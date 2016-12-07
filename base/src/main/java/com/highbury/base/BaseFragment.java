@@ -7,12 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by han on 2016/12/6.
  */
 
 public abstract class BaseFragment extends Fragment {
-
+    private Unbinder mUnbinder;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -20,8 +23,36 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
-    public abstract int getLayoutId();
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mUnbinder= ButterKnife.bind(this,view);
+        setupViews(view);
+        initFields();
+        startBusiness();
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbindView();
+    }
 
-    public abstract void setupViews(Bundle savedInstanceState);
+    protected abstract int getLayoutId();
+
+    protected abstract void setupViews(View rootView);
+
+    protected void startBusiness(){
+
+    }
+
+    protected void initFields(){
+
+    }
+
+    protected void unbindView(){
+        if(mUnbinder!=null){
+            mUnbinder.unbind();
+        }
+    }
 }
