@@ -1,1 +1,1 @@
-include ':app', ':base', ':net'
+include ':app', ':base', ':net', ':chat'

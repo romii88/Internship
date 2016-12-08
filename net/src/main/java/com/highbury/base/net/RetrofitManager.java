@@ -2,6 +2,8 @@ package com.highbury.base.net;
 
 import android.os.Build;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
+
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -83,7 +85,7 @@ public class RetrofitManager {
         OkHttpClient.Builder builder=new OkHttpClient.Builder();
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(logging);
-//            builder.addNetworkInterceptor(new StethoInterceptor());
+            builder.addNetworkInterceptor(new StethoInterceptor());
         }
         return builder
                 .connectTimeout(10, TimeUnit.SECONDS)

@@ -2,8 +2,8 @@
 
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
+        jcenter()
 //        maven {
 //            // For fabric
 //            url 'https://maven.fabric.io/public'
@@ -22,8 +22,8 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
         mavenCentral()
+        jcenter()
 //        maven {
 //            // For icepick
 //            url 'https://clojars.org/repo/'
