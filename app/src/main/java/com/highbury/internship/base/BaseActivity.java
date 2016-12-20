@@ -1,4 +1,4 @@
-package com.highbury.base;
+package com.highbury.internship.base;
 
 import android.content.Context;
 import android.os.Bundle;
