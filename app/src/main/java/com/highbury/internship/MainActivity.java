@@ -1,5 +1,6 @@
 package com.highbury.internship;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.highbury.internship.home.HomeFragment;
+import com.highbury.internship.profile.ProfileFragment;
+import com.highbury.internship.update.UpdateService;
 
 /**
  * Created by han on 2016/12/6.
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupViews();
+        Intent intent = new Intent(this, UpdateService.class);
+        startService(intent);
 //        mBottomNavigationView=(BottomNavigationView)findViewById(R.id.bottom_navigation);
 //        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 //            @Override
@@ -63,10 +68,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void initTabContainer(){
         HomeFragment homeFragment=new HomeFragment();
+//        ChatFragment chatFragment=new ChatFragment();
         HomeFragment homeFragment1=new HomeFragment();
-        mFragments=new Fragment[]{homeFragment,homeFragment1,homeFragment1,homeFragment1};
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment, homeFragment)
-                .add(R.id.fragment, homeFragment1).hide(homeFragment1).show(homeFragment)
+        ProfileFragment profileFragment=new ProfileFragment();
+        mFragments=new Fragment[]{homeFragment,homeFragment1,profileFragment};
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment, homeFragment).show(homeFragment)
+//                .add(R.id.fragment, homeFragment1).hide(homeFragment1)
+                .add(R.id.fragment, homeFragment1).hide(homeFragment1)
+                .add(R.id.fragment, profileFragment).hide(profileFragment)
                 .commit();
     }
 

@@ -3,6 +3,7 @@ package com.highbury.internship.user;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -13,8 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.highbury.internship.MainActivity;
 import com.highbury.internship.R;
 import com.highbury.internship.base.BaseActivity;
+import com.highbury.internship.chat.ChatHelper;
+import com.highbury.internship.chat.ChatRequestCallback;
+import com.hyphenate.chat.EMClient;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -100,6 +105,29 @@ public class LoginActivity extends BaseActivity{
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
+            ChatHelper.getInstance().login(userName, password, new ChatRequestCallback() {
+                @Override
+                public void onSuccess() {
+                    showProgress(false);
+                    EMClient.getInstance().groupManager().loadAllGroups();
+                    EMClient.getInstance().chatManager().loadAllConversations();
+                    Intent intent = new Intent(LoginActivity.this,
+                            MainActivity.class);
+                    startActivity(intent);
+
+                    finish();
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    showProgress(true);
+                }
+
+                @Override
+                public void onProgress(int i, String s) {
+
+                }
+            });
         }
     }
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <EditText android:id="@+id/et_user_name" android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+    <EditText android:id="@+id/et_password" android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/et_captcha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+        <com.highbury.internship.widget.CountDownButton
+            android:id="@+id/btn_count_down"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/request_captcha"
+            app:countDown="60"
+            app:countDownFormat="请稍候(%ds)"
+            app:countDownInterval="1000"
+            android:layout_weight="1"/>
+    </LinearLayout>
+<Button android:layout_width="match_parent" android:layout_height="wrap_content"
+android:id="@+id/btn_register"
+android:text="@string/register"/>
+</LinearLayout>

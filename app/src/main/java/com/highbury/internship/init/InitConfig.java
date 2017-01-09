@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.facebook.stetho.Stetho;
 import com.highbury.internship.BuildConfig;
+import com.highbury.internship.chat.ChatHelper;
 import com.highbury.internship.logger.FakeCrashLibrary;
 
 import timber.log.Timber;
@@ -21,6 +22,7 @@ public class InitConfig {
             Timber.plant(new CrashReportingTree());
         }
         Stetho.initializeWithDefaults(application);
+        ChatHelper.getInstance().init(application);
     }
 
     /** A tree which logs important information for crash reporting. */

@@ -1,1 +1,1 @@
-include ':app', ':base', ':net', ':chat'
+include ':app', ':net', ':chat', ':easeui'
